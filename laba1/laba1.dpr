@@ -20,7 +20,7 @@ type
 
 var
   x, y, EntryPoint1: PElem;
-  a, b, EntryPoint2: PElemUp;
+  a, Header, EntryPoint2: PElemUp;
   I, N, Num: integer;
   flag: boolean;
 
@@ -102,9 +102,13 @@ begin
     y := y^.Prev;
   end;
 
-  New(a);
-  flag := true;
   y := EntryPoint1;
+  New(Header);
+  a := Header;
+  while y^.Data < 1000 do
+    y := y^.Prev;
+  Header^.Data := y^.Data;
+  y := y^.Prev;
   while y <> nil do
   begin
     if y^.Data < 1000 then
@@ -115,19 +119,13 @@ begin
       a := a^.Next;
       a^.Data := y^.Data;
       y := y^.Prev;
-      if flag then
-      begin
-        EntryPoint2 := a;
-        flag := false;
-      end;
     end;
   end;
   a^.Next := nil;
 
-  WriteLn('Отсортированный однонаправленный список: ');
-  WriteLn('Вы ввели список: ');
-  SortList(EntryPoint2);
-  a := EntryPoint2;
+  WriteLn('Отсортированный по возрастанию однонаправленный список: ');
+  SortList(Header);
+  a := Header;
   while a <> nil do
   begin
     WriteLn(a.Data);
