@@ -20,9 +20,8 @@ type
 
 var
   x, y, EntryPoint1: PElem;
-  a, Header, EntryPoint2: PElemUp;
-  I, N, Num: integer;
-  flag: boolean;
+  a, Header: PElemUp;
+  I, N: integer;
 
 function ReadCorrectly: integer;
 var
