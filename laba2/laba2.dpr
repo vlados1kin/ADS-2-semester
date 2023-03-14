@@ -1,4 +1,4 @@
-program Project1;
+program laba2;
 
 {$APPTYPE CONSOLE}
 
@@ -16,7 +16,7 @@ type
 
 var
   Circle: pt;
-  N, K: integer;
+  I, N, K: integer;
 
 procedure MakeCircle(var Circle: pt; const N: integer);
 var
@@ -50,8 +50,7 @@ begin
     Circle^.Next := Temp^.Next;
     Dispose(Temp);
   end;
-  WriteLn('Остался: '+ IntToStr(Circle^.Number));
-  WriteLn('Удалены: ' + Str);
+  WriteLn('Остался: '+ IntToStr(Circle^.Number) + ' Удалены: ' + Str);
 end;
 
 procedure Input(var N, K: integer);
@@ -75,5 +74,12 @@ begin
   Input(N, K);
   MakeCircle(Circle, N);
   ResultGame(Circle, K);
+  Write('Нажмите Enter...');
+  ReadLn;
+  for I := 1 to 64 do
+  begin
+    MakeCircle(Circle, I);
+    ResultGame(Circle, K);
+  end;
   ReadLn;
 end.
